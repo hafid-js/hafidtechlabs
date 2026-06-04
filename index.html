@@ -6,32 +6,40 @@
   <title>HafidTech Labs</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Roboto', sans-serif;
       background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a);
       color: #ffffff;
       text-align: center;
-      overflow: hidden;
+      position: relative;
     }
 
     .container {
       animation: fadeIn 2s ease-in-out;
+      width: 90%;
+      max-width: 600px;
     }
 
     h1 {
-      font-size: 48px;
-      letter-spacing: 4px;
+      font-size: 10vw; /* responsive font size */
+      letter-spacing: 0.5vw;
       margin: 0;
       text-transform: uppercase;
     }
 
     p {
-      font-size: 20px;
+      font-size: 4vw; /* responsive font size */
       color: #94a3b8;
       margin-top: 10px;
     }
@@ -44,16 +52,14 @@
     /* Floating particles effect */
     .particle {
       position: absolute;
-      width: 6px;
-      height: 6px;
       background: rgba(255,255,255,0.5);
       border-radius: 50%;
       animation: float 10s linear infinite;
     }
 
     @keyframes float {
-      0% {transform: translateY(100vh) translateX(0);}
-      100% {transform: translateY(-10vh) translateX(50vw);}
+      0% {transform: translateY(100vh);}
+      100% {transform: translateY(-10vh);}
     }
   </style>
 </head>
@@ -66,12 +72,15 @@
 
 <script>
   // generate floating particles
-  for (let i = 0; i < 40; i++) {
-    let particle = document.createElement('div');
+  const particleCount = 40;
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
     particle.className = 'particle';
-    particle.style.left = Math.random() * window.innerWidth + 'px';
-    particle.style.animationDuration = (5 + Math.random()*5) + 's';
-    particle.style.width = particle.style.height = (2 + Math.random()*4) + 'px';
+    const size = 2 + Math.random() * 4;
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.left = Math.random() * 100 + 'vw';
+    particle.style.animationDuration = (5 + Math.random() * 5) + 's';
     document.body.appendChild(particle);
   }
 </script>
